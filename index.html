@@ -23,19 +23,23 @@
 </head>
 
 <body>
-    <section class="content">
+    <section id="content" class="content">
         <h1>Pokedex</h1>
-
         <ol id="pokemonList" class="pokemons">
             <!-- ..... Pokemons here ..... -->
         </ol>
-
         <div class="pagination">
             <button id="loadMoreButton" type="button">
                 Load More
             </button>
         </div>
     </section>
+
+    <section id="pokemon-content" class="pokemon-content" style="display: block;">    
+        <div id="pokemon-about" class="content pokemon-about" style="background-color: var(--grass); display: none;">
+            <!-- ..... Pokemon Item ..... -->
+        </div>        
+    </section>    
 
     <!-- Nosso JS -->
     <script src="/assets/js/pokemon-item-model.js"></script>
