@@ -74,13 +74,13 @@ function convertPokemonToDiv(pokemonItem) {
                     ${pokemonItem.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                 </ol>
             </div>
-            <img class="pokemon-item-img" width="200px" height="200px" src="${pokemonItem.photo}" alt="${pokemonItem.name}">
+            <img class="img" width="200px" height="200px" src="${pokemonItem.photo}" alt="${pokemonItem.name}">
         </div>
         <div class="pokemon-info">
             <div id="poke-header">
-                    <ul class="pokemon-item-nav">
-                    <li class="active t-about"> About</li>
-                    <li class="t-base">Base Status</li>
+                <ul class="pokemon-item-nav">
+                    <li id="t-about" class="active t-about" onClick="showItemAbout()">About</li>
+                    <li id="t-base" class="t-base" onClick="showItemBase()">Base Status</li>
                 </ul>
             </div>
             <div id="info-content">
@@ -100,6 +100,18 @@ function convertPokemonToDiv(pokemonItem) {
                             </ol>
                         </div>
                     </li>
+                    <li class="active t-base">
+                        <div class="d-flex" id="poke-info">
+                            <ol class="details-a">
+                                <li>Alguma coisa</li>
+                                <li>Mais alguma</li>
+                            </ol>
+                            <ol class="details-b">
+                                <li>Info 1</li>
+                                <li>Info 2</li>
+                            </ol>
+                        </div>
+                    </li>
                 </ul>    
             </div>
         </div>
@@ -110,18 +122,28 @@ function convertPokemonToDiv(pokemonItem) {
 function showItem(number) {
     pokeApi.getPokemonItem(number).then((pokemonItem = '') => {
         //console.log(pokemonItem)
-        //document.getElementById('header').style.display = "none";
-        document.getElementById('content').style.display = "none";
-        document.getElementById('pokemon-content').style.display = "block";
+        //document.getElementById('header').style.display = "none"
+        document.getElementById('content').style.display = "none"
+        document.getElementById('pokemon-content').style.display = "block"
     
-        location.href="#pokemon-about";
+        location.href="#pokemon-about"
         document.getElementById('pokemon-content').innerHTML = convertPokemonToDiv(pokemonItem)
 
-        scroll(0,0);    
+        scroll(0,0);        
     })
 }
 
 function backList() {
-    document.getElementById('pokemon-content').style.display = "none";
-    document.getElementById('content').style.display = "block";
+    document.getElementById('pokemon-content').style.display = "none"
+    document.getElementById('content').style.display = "block"
+}
+
+function showItemAbout() {
+    document.getElementsByClassName('t-base').removeAttribute('active')
+    document.getElementsByClassName('t-about').toggleAttribute('active')
+}
+
+function showItemBase() {
+    document.getElementsByClassName('t-about').removeAttribute('active')
+    document.getElementsByClassName('t-base').toggleAttribute('active')
 }
